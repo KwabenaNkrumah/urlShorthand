@@ -1,0 +1,18 @@
+CREATE TABLE url(
+    id SERIAL PRIMARY KEY,
+    original_url TEXT NOT NULL,
+    short_code VARCHAR(10) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    clicks INTEGER DEFAULT 0,
+    expires_at TIMESTAMP,
+    user_id INTEGER NOT NULL,
+    user_id REFERENCES users(id) ON DELETE CASCADE  
+);
+
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    user_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    user_password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
